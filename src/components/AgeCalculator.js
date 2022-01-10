@@ -27,10 +27,10 @@ export default function AgeCalculator(){
         const Birth_Date = new Date(DOB);
         const today = new Date();
         
-        const Years=today.getFullYear()-Birth_Date.getFullYear();
-      //  const Months=today.getMonth()-Birth_Date.getMonth();
-      //  const Days=Math.abs((today.getDate()-Birth_Date.getDate()));
-        dispatch({ type: actions.UPDATE_SELECTED_DETAILS, payload: Years});
+        const Years=Math.abs(today.getFullYear()-Birth_Date.getFullYear());
+       const Months=Math.abs(today.getMonth()-Birth_Date.getMonth());
+       const Days=Math.abs((today.getDate()-Birth_Date.getDate()));
+        dispatch({ type: actions.UPDATE_SELECTED_DETAILS, payload: {Years:Years,Months:Months,Days:Days}});
         console.log(Years);
         navigate('/child');
        /* navigate('/child',{state : {

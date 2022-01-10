@@ -1,7 +1,7 @@
 import actions from "./actions";
 
 const initState  =  {
-  selectedDetails: undefined,
+  age: {}
 };
 
 const searchReducer = (state = initState, action) => {
@@ -9,7 +9,7 @@ const searchReducer = (state = initState, action) => {
         case actions.UPDATE_SELECTED_DETAILS: {
             return {
                 ...state,
-               selectedDetails:action.payload
+               age:action.payload
             };
         }
         default: return state;
