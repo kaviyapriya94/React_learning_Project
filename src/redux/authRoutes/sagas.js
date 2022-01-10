@@ -11,21 +11,23 @@ const rootSaga = function* () {
 const workersLogIn = function* (data) {
   console.log(data);
   // const userData={UserName:"admin",Password:"Admin432"}
-  const userData=data;
+  const {payload}=data;
   console.log("Workers login");
-  console.log(userData);
+  console.log(payload);
     try{
+      console.log(JSON.stringify(payload));
      const result = yield call(() =>
       axios.post(
-        `https://pj.avaniko.com/PJjewels/Api/Masters/User/Validation`,JSON.stringify(userData),
+        `https://pj.avaniko.com/PJjewels/Api/Masters/User/Validation`,JSON.stringify(payload),
         {
           headers:{
             'Content-Type' : 'application/json'
           }
         })
     );
-    const JSONResult = JSON.parse(JSON.stringify(result.data));
-    if(JSONResult.statusCode === 200) {
+    console.log(result);
+    // const Result = JSON.parse(JSON.stringify(result.data));
+    if(result.data.statusCode === 200) {
       yield put({
         type: actions.UPDATE_AUTH_DETAILS,
         payload: {isAuthenticated:true}
@@ -40,6 +42,7 @@ const workersLogIn = function* (data) {
   catch (err) {
     yield put({
       type: actions.UPDATE_AUTH_DETAILS,
+      
       payload: { isAuthenticated: false }
     });
   }
